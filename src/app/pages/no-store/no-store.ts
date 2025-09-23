@@ -1,14 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input } from '@angular/core';
-import {
-  globalQueries,
-  localStoragePersister,
-  query,
-  SignalProxy,
-} from '@ng-query/ngrx-signals';
+import { globalQueries, query, SignalProxy } from '@ng-query/ngrx-signals';
 import { ApiService } from './api.service';
 import { StatusComponent } from '../../ui/status.component';
 import { Router } from '@angular/router';
+import { localStoragePersister } from '@ng-query/ngrx-signals/persisters/local-storage';
 
 const { injectUserQuery } = globalQueries(
   {
@@ -63,7 +59,7 @@ const { injectUserQuery } = globalQueries(
     <button (click)="nextPage()">Next user</button>
   `,
 })
-export default class GlobalQueryAndMutation {
+export default class GlobalQuery {
   public readonly userId = input<string>();
   protected readonly userQuery = injectUserQuery(() => ({
     id: this.userId,
